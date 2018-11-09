@@ -1,31 +1,238 @@
-window.onload = function() {
-
-
-//document.getElementsByClassName("choose-player")[i].onclick = function() {
-//    choose_player();
-//}
-
-document.getElementById("start-button").onclick = function() {
-         start_game();
-};
-
-
-// CANVAS variables
+// Canvas variables
 var c=document.getElementById('canvas');
 var ctx=c.getContext('2d');
+var W = canvas.width;
+var H = canvas.height;
 
-//function choose_player(i){    
-//    return document.getElementsByClassName("choose-player")[i];
-//    };
+// Button variables
 
-function start_game(){    
-    document.getElementsByClassName("choose-player")[0].style.display="none";
-    //document.getElementsByClassName("choose-player")[1].style.display="none";
-    document.getElementById("start-button").style.display="none";
-    ctx.font = "50px Arial";
-    ctx.fillStyle='orange';
-    ctx.fillRect(0,0,800,400);
+var start_button = document.getElementById('start_button');
+
+document.getElementById('start_button').onclick = function() {
+    start_game();
+    draw();
+    setInterval(draw, 10);
 };
 
 
+var remove_intro = document.getElementById('intro');
+
+// Player class
+
+var players = document.getElementsByClassName("players");
+// //for( var i = 0; i < players.length; i++ ) {
+// //    players[i].onclick = function() {
+// //        for( var j = 0; j < players.length; j++ ){
+// //            players[j].classList.remove("face-style");
+// //        };
+// //        players.src = this.querySelector("images").src;
+// //        this.classList.add("face-style");
+// //    }
+// //}
+
+// Sound variables
+
+var start_sound = new Audio("./images/tennisserve.wav");
+// var winner_is_sound = new Audio("./sounds/tennisserve.mp3");
+
+// Play variable
+
+var play_game = true;
+
+// Ball variable
+
+var ballX = c.width/2;
+var ballY = c.height/2;
+var ballSpeedX = 2;
+var ballSpeedY = 2;
+var ballRad = 10;
+
+// Tennis player's racket variable
+
+var racketHeight = 150;
+var racketThickness = 30;
+var p_racketY = 150;
+var c_racketY = 150;
+var racketY = (H-racketHeight)/2;
+
+// Score variables
+
+var score_player1 = 0;
+var score_player2 = 0;
+var winning_score = 1;
+
+// Keys functions
+
+var keyDown = false;
+var keyUp = false;
+
+document.addEventListener("keydown", keyDownFn, false);
+document.addEventListener("keyup", keyUpFn, false);
+
+function keyDownFn(e) {
+    if(e.keyCode == 40) {
+        keyDown = true;
+    }
+    else if(e.keyCode == 38) {
+        keyUp = true;
+    }
+}
+
+// Key up function
+function keyUpFn(e) {
+    if(e.keyCode == 40) {
+        keyDown = false;
+    }
+    else if(e.keyCode == 38) {
+        keyUp = false;
+    }
+}
+
+// winner_is
+//var winner_is = {
+//    draw_winner_is : function game_winner_is() {
+//        ctx.rect(0,0,400,800)
+//        ctx.fillStyle = "white";
+//        ctx.fill();
+//        ctx.font = "50px 'Press Start 2P', cursive";
+//        ctx.fillStyle = "black";
+//        ctx.fillText("The winner is", 145, 250); 
+//        //winner_is_sound.play();         
+//    }
+//}
+
+
+// Start Game
+function start_game(){
+    start_button.style.display = 'none';
+    remove_intro.style.display = 'none'; 
+    start_sound.play();
+}
+
+// Draw the ball
+function drawBall (){
+    ctx.beginPath();
+    ctx.fillStyle="yellow";
+    ctx.arc(ballX, ballY, ballRad, 0, Math.PI*2, false);
+    ctx.fill();
+    ctx.closePath(); 
 };
+
+function drawScore(x,y,z) {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText("Score: "+x, y, z);
+}
+
+function colorRect(leftX, topY, width, height, drawColor) {
+    ctx.fillStyle = drawColor;
+    ctx.fillRect(leftX, topY, width, height);
+}
+
+function colorRectwinner(leftX, topY, width, height, drawColor) {
+    ctx.fillStyle = drawColor;
+    ctx.fillRect(leftX, topY, width, height);
+    start_button.style.display;
+}
+
+function drawNet() {
+    for (var i = 0; i < H; i += 40) {
+      colorRect(W / 2 - 1, i, 2, 20, 'white');
+    }
+}
+
+function computerMovement() {
+    var paddle2YCenter = c_racketY + (racketHeight / 2);
+    if (paddle2YCenter < ballY - 35) {
+        c_racketY += 7;
+    } else if (paddle2YCenter > ballY + 35) {
+        c_racketY -= 7;
+    }
+}
+
+function resetball() {
+    if (score_player1 >= winning_score || score_player2 >= winning_score) {
+        play_game = false;
+      }
+    ballSpeedX = -ballSpeedX;
+    ballX = W / 2;
+    ballY = H / 2;
+  }
+
+function move(){
+    computerMovement();
+    if (ballX < 0) {
+        if (ballY > p_racketY &&
+          ballY < p_racketY + racketHeight) {
+          ballSpeedX = -ballSpeedX;
+    
+          var deltaY = ballY - (p_racketY + racketHeight / 2);
+          ballSpeedY = deltaY * 0.2;
+        } else {
+            score_player2++;
+            resetball()
+        }
+      }
+
+    if (ballX > W) {
+        if (ballY > c_racketY &&
+          ballY < c_racketY + racketHeight) {
+          ballSpeedX = -ballSpeedX;
+    
+          var deltaY = ballY - (c_racketY + racketHeight / 2);
+          ballSpeedY = deltaY * 0.2;
+        } else {
+            score_player1++;
+            resetball()
+        }
+      }
+
+    if (ballY < 0) {
+        ballSpeedY = -ballSpeedY;
+      }
+      if (ballY > H) {
+        ballSpeedY = -ballSpeedY;
+      }
+
+    if(keyDown && p_racketY < H -racketHeight) {
+        p_racketY += 7;
+    }
+    else if(keyUp && p_racketY > 0) {
+        p_racketY-= 7;
+    }
+
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
+}
+
+function draw() {
+  if (play_game==true){
+    ctx.clearRect(0, 0, W, H);
+    //drawPitch();
+    colorRect(0,0,800,600,'orange'); 
+    //player1
+    colorRect(0,p_racketY,racketThickness,racketHeight, 'white');
+    //player2 (computer)
+    colorRect(W-racketThickness,c_racketY,racketThickness,racketHeight, 'white');
+    drawBall();
+    drawNet();
+    move();
+    //Score player1
+    drawScore(score_player1,75,20);
+    //Score player2
+    drawScore(score_player2,700,20);
+  } else {   
+    colorRectwinner(0,0,800,600,'black');   
+    ctx.fillStyle = 'white';
+    if (score_player1 >= winning_score) {
+    ctx.fillText('Left player Won!', 350, 200);
+    } else if (score_player2 >= winning_score) {
+    ctx.fillText('Right player Won!', 350, 200);
+    }
+    ctx.fillText('Click to continue', 350, 500);
+    return;
+  }
+}
+
+
+

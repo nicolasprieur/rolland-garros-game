@@ -1,40 +1,90 @@
 body {
     padding: 0;
     text-align: center;
-    background-image: url("./images/rolland_garros_vue_aerienne.png");
+    background-image: url("C:\Users\nicol\Desktop\code\rolland-garros-game\rolland-garros-game\Images");
+    background-size: cover;
     background-repeat: no-repeat;
-    background-size: contain;
-  }
-  
-  .game-intro {
-    float: left;
-    padding: 0% 10%;
-  }
-  
-  .game-intro p {
-    font-size: 18px;
-    font-family: "Verdana"
+    height: 100vh;
+    width: 100vw;
   }
 
-  .logo-img {
-    width: 350px;
-  }
-  
-  .roger-img {
-    width: 150px;
+
+  header {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .rafa-img {
-    width: 150px;
+  h1 {
+    color:blue;
+    font-size: 60px;
+    border-bottom: 5px solid white;
   }
-  
-  body button {
+
+  p {
     font-size: 30px;
-    background-color: #870007;
-    color: #fff;
-    padding: 20px 40px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    margin : 50px auto;
+  }
+
+  .game-screen {
+    width: 100px;
+    height: 400px;
+    text-align:center;
+  }
+
+  .game-intro {
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    z-index: -0;
+  }
+
+  canvas {
+    background-color: green;
+    position: absolute;
+    z-index: -1;
+    /* margin-left: 150px;
+    margin-right: 360px; */
+  }
+  
+  .players {
+    display: flex; 
+    justify-content: center;
+    align-items:center;
+  }
+  
+  .player-button{
+    border : 2px solid #0095DD;
+    width: 150px;
+    height: 150px;
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .player-img{
+    width: 150px;
+  }
+
+  .player-button:hover{
+    background-color: #0095DD;
+  }
+
+  #start_button {
+    height: 50px;
+    width: 200px;
+    margin-top:70px;
+    border-radius: 25px;
+    border: 2px solid #0095DD;
+    font-family: 'Baloo Bhai', cursive;
+    color: #0095DD;
+    font-size: 15px;
+  }
+
+  #start_button:hover{
+    background-color: #0095DD;
+    color: black;
   }

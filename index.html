@@ -4,28 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script type="text/javascript" src="script.js">
-  </script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"> 
   <title>Document</title>
 </head>
+
+
 <body>
-    <div class="game-intro">
-        <div class="choose-player">
-              <button id="choose-player-1">
-                <img src="./images/roger_federer.jpg" alt="" class="roger-img">
-              </button>
-              <button id="choose-player-2">
-                <img src="./images/roger_federer.jpg" alt="" class="roger-img">
-              </button>
+<header>
+        <h1>Rolland Garros 2019</h1>
+</header>
+
+
+<div class="game-screen">
+
+  <div class="game-intro" id="intro">
+    <p> Select your tennis player </p>
+        <div class="players">
+            <div class="player-button"><img class="player-img" src="./images/roger_federer.jpg" alt=""></div>
+            <div class="player-button"><img class="player-img" src="./images/roger_federer.jpg" alt=""></div>
         </div>
-        <br>
-        <p><button id="start-button">Start</button>
-        </p>   
-    </div>
-    <div id="game-board">
-        <canvas id="canvas" height="400" width="800">
-        </canvas>
-    </div>
+          <button id="start_button">Start</button> 
+  </div>
+
+  <div class="game-pitch">
+        <canvas id="canvas" style="border:2px solid #000000" height="600" width="800" box-sizing="border-box"></canvas>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>

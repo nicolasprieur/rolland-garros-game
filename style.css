@@ -22,6 +22,12 @@ body {
     font-size: 60px;
   }
 
+  p {
+    font-size: 30px;
+    margin : 50px auto;
+    color: white;
+  }
+
   .game-screen {
     width: 100px;
     height: 400px;

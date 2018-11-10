@@ -1,5 +1,6 @@
 // Canvas variables
 var c=document.getElementById('canvas');
+var soundNotPlayed = true;
 var ctx=c.getContext('2d');
 var W = canvas.width;
 var H = canvas.height;
@@ -11,6 +12,7 @@ var start_button = document.getElementById('start_button');
 document.getElementById('start_button').onclick = function() {
     start_game();
     draw();
+    soundNotPlayed = true;
     setInterval(draw, 10);
 };
 
@@ -76,7 +78,7 @@ var racketY = (H-racketHeight)/2;
 
 var score_player1 = 0;
 var score_player2 = 0;
-var winning_score = 2;
+var winning_score = 3;
 
 // Keys functions
 
@@ -137,7 +139,10 @@ function colorRectwinner(leftX, topY, width, height, drawColor) {
     ctx.fillRect(leftX, topY, width, height);
     restart_button.style.opacity = 100;
     drawPlayer();
-    winner_is_sound.play();
+    if (soundNotPlayed) {
+        winner_is_sound.play();
+soundNotPlayed = false;
+    }
 }
 
 function drawNet() {

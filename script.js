@@ -171,7 +171,7 @@ function move(){
           ballSpeedX = -ballSpeedX;
     
           var deltaY = ballY - (p_racketY + racketHeight / 2);
-          ballSpeedY = deltaY * 0.1;
+          ballSpeedY = deltaY * 0.2;
         } else {
             score_player2++;
             resetball()

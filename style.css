@@ -1,7 +1,7 @@
 body {
     padding: 0;
     text-align: center;
-    background-image: url("C:\Users\nicol\Desktop\code\rolland-garros-game\rolland-garros-game\Images");
+    background-image: url("https://media.giphy.com/media/DbIeb5KUODa80/giphy.gif");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
@@ -18,7 +18,7 @@ body {
   }
 
   h1 {
-    color:blue;
+    color: WHITE;
     font-size: 60px;
     border-bottom: 5px solid white;
   }
@@ -26,6 +26,7 @@ body {
   p {
     font-size: 30px;
     margin : 50px auto;
+    color: WHITE;
   }
 
   .game-screen {
@@ -42,13 +43,19 @@ body {
   }
 
   canvas {
-    background-color: green;
+    padding: 0;
+    margin: auto;
+    display: block;
     position: absolute;
+    background-color: orange;
     z-index: -1;
-    /* margin-left: 150px;
-    margin-right: 360px; */
-  }
-  
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
   .players {
     display: flex; 
     justify-content: center;
@@ -78,13 +85,36 @@ body {
     width: 200px;
     margin-top:70px;
     border-radius: 25px;
-    border: 2px solid #0095DD;
-    font-family: 'Baloo Bhai', cursive;
-    color: #0095DD;
+    border: 2px solid black;
+    color: black;
     font-size: 15px;
   }
 
   #start_button:hover{
     background-color: #0095DD;
     color: black;
+  }
+
+  #restart_button {
+    height: 50px;
+    width: 200px;
+    border-radius: 25px;
+    border: 2px solid black;
+    color:black;
+    font-size: 15px;
+    z-index: 0;
+    position: relative;
+    margin-top: 500px;
+    margin-left: 550px;
+    opacity: 0;
+  }
+
+  #restart_button:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  
+  .face-style {
+    background-color: #0095DD;
   }

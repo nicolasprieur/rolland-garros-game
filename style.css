@@ -20,14 +20,14 @@ body {
   h1 {
     color: WHITE;
     font-size: 60px;
-    border-bottom: 5px solid white;
+    /* border-bottom: 5px solid white; */
   }
 
-  p {
+  /* p {
     font-size: 30px;
     margin : 50px auto;
     color: WHITE;
-  }
+  } */
 
   .game-screen {
     width: 100px;

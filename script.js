@@ -50,7 +50,7 @@ for( var i = 0; i < players.length; i++ ) {
 // Sound variables
 
 var start_sound = new Audio("./Images/tennisserve.wav");
-// var winner_is_sound = new Audio("./sounds/tennisserve.mp3");
+var winner_is_sound = new Audio("./Images/winning.wav");
 
 // Play variable
 
@@ -137,6 +137,7 @@ function colorRectwinner(leftX, topY, width, height, drawColor) {
     ctx.fillRect(leftX, topY, width, height);
     restart_button.style.opacity = 100;
     drawPlayer();
+    winner_is_sound.play();
 }
 
 function drawNet() {

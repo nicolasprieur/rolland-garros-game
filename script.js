@@ -17,10 +17,10 @@ document.getElementById('start_button').onclick = function() {
 var restart_button = document.getElementById('restart_button');
 
 var playerFace = new Image();
-playerFace.src = "./images/roger_federer.jpg";
+playerFace.src = "./Images/roger_federer.jpg";
 
 var computerFace = new Image();
-computerFace.src = "./images/computer.jpg";
+computerFace.src = "./Images/computer.jpg";
 
 function drawPlayer (){
     if (play_game==false && (score_player1 >= winning_score)) {
@@ -49,7 +49,7 @@ for( var i = 0; i < players.length; i++ ) {
 
 // Sound variables
 
-var start_sound = new Audio("./images/tennisserve.wav");
+var start_sound = new Audio("./Images/tennisserve.wav");
 // var winner_is_sound = new Audio("./sounds/tennisserve.mp3");
 
 // Play variable
